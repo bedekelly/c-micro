@@ -43,3 +43,44 @@ make run
 A simple echo-server should be running on `localhost:8080`! Test it out using `curl`, `httpie` or Postman.
 
 ![](screenshot.png)
+
+## Details
+
+Each project needs a `routes.c` file. This `routes.c` file must contain a function with this signature:
+
+```c
+void routes(method get, method post);
+````
+
+Inside this function, calls to the `route` function should be made in order to register handler functions for endpoints.
+
+```C
+void routes(method get, method post) {
+    route(get, "/", helloWorld);
+    route(post, "todo", addTodo);
+}
+```
+
+The signature for a handler function should look like the following:
+
+```
+json_response getResource();
+json_response addResource(json data);
+```
+
+To return a `json_response`, utility functions are provided in `microservice.h`. These include:
+
+```c
+
+// Returns a JSON response with code 200.
+json_response ok(json message);
+
+// Returns a JSON response with provided code.
+json_response err(json message, int errorCode);
+
+// Returns a JSON response with provided JSON.
+json_response msg(char *message);
+
+// Returns a single key-value JSON object.
+json kv(char *key, char *value);
+```
