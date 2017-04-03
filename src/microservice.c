@@ -2,25 +2,36 @@
 #include "microservice.h"
 
 
+json_response ok(json msg) {
+  char *heapMessage = strdup(msg);
+  int code = 200;
+  json_response r = {code, heapMessage};
+  return r;
+}
+
+
+json_response err(json msg, int code) {
+  char *heapMessage = strdup(msg);
+  json_response r = {code, heapMessage};
+  return r;
+}
+
+
 json_response msg(char *s) {
   int len = strlen(s);
   char message[len + 20];
   sprintf(message, "{\"message\": \"%s\"}", s);
-  char *heapMessage = strdup(message);
-  int code = 200;
-  json_response response = {code, heapMessage};
-  return response;
+  return ok(message);
 }
 
 
-json_response bad(json s) {
+json_response bad_request(json s) {
   int len = strlen(s);
   char message[len + 20];
   sprintf(message, "{\"error\": \"%s\"}", s);
   char *heapMessage = strdup(message);
   int code = 400;
-  json_response response = {code, heapMessage};
-  return response;
+  return err(heapMessage, code);
 }
 
 /**

@@ -96,3 +96,5 @@ tramp
 *.dSYM/
 
 *build*
+*log.txt
+server/venv*

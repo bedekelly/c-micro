@@ -24,9 +24,9 @@ def post(path):
     def _post(path):
         if not request.is_json:
             return "Bad request!", 400
-        text = request.get_data(as_text=True)
-        response, code = microservice.post(path, text)
-        return jsonify(json.loads(response)), code
+        req_text = request.get_data(as_text=True)
+        code, text = microservice.post(path, req_text)
+        return jsonify(json.loads(text)), code
     return lambda: _post(path)
 
 

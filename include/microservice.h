@@ -12,7 +12,7 @@ typedef struct json_response {
   json text;
 } json_response;
 
-
+json_response ok(json msg);
 
 typedef json_response getFunc();
 typedef json_response postFunc(json);
