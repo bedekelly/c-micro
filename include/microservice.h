@@ -33,16 +33,15 @@ typedef struct endpoint {
 
 typedef endpoint** method;
 
-
-
-json_response msg(json s);
-json_response bad(json s);
-
-
 void routes(method, method);
-
-void route(method m, path location, routeFunc handler);
-
 endpoint *emptyGet();
 
 endpoint *emptyPost();
+
+
+// These methods comprise the API:
+json_response ok(json message);
+json_response err(json message, int errorCode);
+json_response msg(char *message);
+json kv(char *key, char *value);
+void route(method m, path location, routeFunc handler);

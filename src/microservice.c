@@ -25,14 +25,13 @@ json_response msg(char *s) {
 }
 
 
-json_response bad_request(json s) {
-  int len = strlen(s);
+json kv(char *key, char *value) {
+  int len = strlen(key) + strlen(value);
   char message[len + 20];
-  sprintf(message, "{\"error\": \"%s\"}", s);
-  char *heapMessage = strdup(message);
-  int code = 400;
-  return err(heapMessage, code);
+  sprintf(message, "{\"%s\": \"%s\"}", key, value);
+  return strdup(message);
 }
+
 
 /**
  * Create a new "GET" endpoint on the heap.
