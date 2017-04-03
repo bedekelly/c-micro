@@ -63,14 +63,14 @@ void routes(method get, method post) {
 
 The signature for a handler function should look like the following:
 
-```
+```C
 json_response getResource();
 json_response addResource(json data);
 ```
 
 To return a `json_response`, utility functions are provided in `microservice.h`. These include:
 
-```c
+```C
 
 // Returns a JSON response with code 200.
 json_response ok(json message);
