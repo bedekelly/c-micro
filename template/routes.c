@@ -3,7 +3,9 @@
 
 // Return the original request, wrapped in our object.
 json_response ping(json request) {
-  return ok(kv("Original Request", request));
+  return ok(
+    kv("Original Request", request)
+  );
 }
 
 

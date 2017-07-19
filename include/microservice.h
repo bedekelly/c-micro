@@ -44,4 +44,5 @@ json_response ok(json message);
 json_response err(json message, int errorCode);
 json_response msg(char *message);
 json kv(char *key, char *value);
+json ks(char *key, char *value);
 void route(method m, path location, routeFunc handler);

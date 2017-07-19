@@ -18,14 +18,19 @@ json_response err(json msg, int code) {
 
 
 json_response msg(char *s) {
-  int len = strlen(s);
-  char message[len + 20];
-  sprintf(message, "{\"message\": \"%s\"}", s);
-  return ok(message);
+  return ok(ks("Message", s));
 }
 
 
 json kv(char *key, char *value) {
+  int len = strlen(key) + strlen(value);
+  char message[len + 20];
+  sprintf(message, "{\"%s\": %s}", key, value);
+  return strdup(message);
+}
+
+
+json ks(char *key, char *value) {
   int len = strlen(key) + strlen(value);
   char message[len + 20];
   sprintf(message, "{\"%s\": \"%s\"}", key, value);
